@@ -17,4 +17,8 @@ export class TodosService {
     const newTodo = new this.todoModel(todoDto);
     return newTodo.save();
   }
+
+  deleteTodo(id: string) {
+    return this.todoModel.findByIdAndDelete(id);
+  }
 }
