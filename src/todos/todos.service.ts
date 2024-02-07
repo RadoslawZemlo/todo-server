@@ -2,6 +2,7 @@ import {Injectable} from '@nestjs/common';
 import {InjectModel} from '@nestjs/mongoose';
 import {Model} from 'mongoose';
 import {Todo} from '../schemas/todo.schema';
+import {TodoDto} from './dto/todo.dto';
 
 @Injectable()
 export class TodosService {
@@ -10,5 +11,10 @@ export class TodosService {
 
   getTodos() {
     return this.todoModel.find();
+  }
+
+  addTodo(todoDto: TodoDto) {
+    const newTodo = new this.todoModel(todoDto);
+    return newTodo.save();
   }
 }
