@@ -1,18 +1,20 @@
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
+import {HydratedDocument} from 'mongoose';
 
-@Schema()
+@Schema({timestamps: true})
 export class Todo {
+  _id: string;
+
   @Prop()
-  task: string;
+  description: string;
 
   @Prop()
   priority: number;
-
-  @Prop()
-  created: string;
 
   @Prop()
   completed: boolean;
 }
 
 export const TodoSchema = SchemaFactory.createForClass(Todo);
+
+export type TodoDocument = HydratedDocument<Todo>;

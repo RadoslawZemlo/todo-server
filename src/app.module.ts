@@ -1,16 +1,22 @@
 import {Module} from '@nestjs/common';
+import {ConfigModule} from '@nestjs/config';
 import {MongooseModule} from '@nestjs/mongoose';
 import {TodosModule} from './todos/todos.module';
-import {AppController} from './app.controller';
-import {AppService} from './app.service';
+import {ConfigConstants} from './config-constats';
+import {ConfigService} from '@nestjs/config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/todos'),
+    ConfigModule.forRoot(),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>(ConfigConstants.MongoUrl),
+      }),
+      inject: [ConfigService],
+    }),
     TodosModule
-  ],
-  controllers: [AppController],
-  providers: [AppService]
+  ]
 })
 export class AppModule {
 }

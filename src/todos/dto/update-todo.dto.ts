@@ -3,13 +3,13 @@ import {IsBoolean, IsNumber, IsOptional, IsString} from 'class-validator';
 export class UpdateTodoDto {
   @IsOptional()
   @IsString()
-  task: string;
+  description?: string;
 
   @IsOptional()
   @IsNumber()
-  priority: number;
+  priority?: number;
 
   @IsOptional()
   @IsBoolean()
-  completed: boolean;
+  completed?: boolean;
 }
