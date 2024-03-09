@@ -1,7 +1,7 @@
 import {Injectable, NotFoundException} from '@nestjs/common';
 import {InjectModel} from '@nestjs/mongoose';
 import {Model} from 'mongoose';
-import {Todo, TodoDocument} from '../schemas/todo.schema';
+import {Todo, TodoDocument} from './schemas/todo.schema';
 import {TodoDto} from './dto/todo.dto';
 import {UpdateTodoDto} from './dto/update-todo.dto';
 

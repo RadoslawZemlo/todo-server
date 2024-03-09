@@ -1,5 +1,5 @@
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
-import {HydratedDocument} from 'mongoose';
+import {HydratedDocument, Schema as MSchema} from 'mongoose';
 
 @Schema({timestamps: true})
 export class Todo {
@@ -13,8 +13,10 @@ export class Todo {
 
   @Prop()
   completed: boolean;
+
+  @Prop({type: MSchema.Types.String, ref: 'Category'})
+  category?: string;
 }
 
 export const TodoSchema = SchemaFactory.createForClass(Todo);
-
 export type TodoDocument = HydratedDocument<Todo>;

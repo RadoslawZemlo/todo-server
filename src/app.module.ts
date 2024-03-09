@@ -4,6 +4,7 @@ import {MongooseModule} from '@nestjs/mongoose';
 import {TodosModule} from './todos/todos.module';
 import {ConfigConstants} from './config-constats';
 import {ConfigService} from '@nestjs/config';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import {ConfigService} from '@nestjs/config';
       }),
       inject: [ConfigService],
     }),
-    TodosModule
+    TodosModule,
+    CategoriesModule
   ]
 })
 export class AppModule {
