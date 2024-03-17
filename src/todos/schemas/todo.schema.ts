@@ -1,9 +1,10 @@
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
-import {HydratedDocument, Schema as MSchema} from 'mongoose';
+import {HydratedDocument, ObjectId, Schema as MSchema} from 'mongoose';
+import {Category} from '../../categories/schemas/category.schema';
 
 @Schema({timestamps: true})
 export class Todo {
-  _id: string;
+  _id: ObjectId;
 
   @Prop()
   description: string;
@@ -14,8 +15,8 @@ export class Todo {
   @Prop()
   completed: boolean;
 
-  @Prop({type: MSchema.Types.String, ref: 'Category'})
-  category?: string;
+  @Prop({type: MSchema.Types.ObjectId, ref: Category.name})
+  category?: ObjectId;
 }
 
 export const TodoSchema = SchemaFactory.createForClass(Todo);

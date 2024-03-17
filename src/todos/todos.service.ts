@@ -11,11 +11,11 @@ export class TodosService {
   }
 
   getTodos(): Promise<TodoDocument[]> {
-    return this.todoModel.find({}).exec();
+    return this.todoModel.find({}).populate('category').exec();
   }
 
   async getTodo(id: string): Promise<TodoDocument> {
-    const todo = await this.todoModel.findOne({_id: id}).exec();
+    const todo = await this.todoModel.findOne({_id: id}).populate('category').exec();
     if (!todo)
       throw new NotFoundException('Todo was not found');
     return todo;
