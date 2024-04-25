@@ -1,7 +1,7 @@
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import {HydratedDocument, ObjectId} from 'mongoose';
 
-@Schema({timestamps: true})
+@Schema()
 export class User {
   _id: ObjectId;
 
